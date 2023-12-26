@@ -34,6 +34,8 @@ const MyBlogs = () => {
         where(`author.id`, "==", auth.currentUser.uid),
         orderBy("timestamp", "desc")
       );
+
+      console.log(q);
       const docSnap = await getDocs(q);
       let blogs = [];
       docSnap.forEach((doc) => {

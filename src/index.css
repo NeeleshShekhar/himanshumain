@@ -5,14 +5,14 @@
 body {
   /* background-color: #252525;
     color: #f1f1f1; */
-  background-color: #1f1f1f;
-  color: #fff;
+  background-color: #ffffff;
+  color: #2e2e2e;
 }
 
 /* Header */
 header {
-  background-color: #333333;
-  color: #f1f1f1;
+  background-color: #ffffff;
+  color: #2f2d2d;
   /* background: linear-gradient(135deg, #434343, #000000);
   padding: 16px; */
 }
@@ -20,11 +20,18 @@ header {
 .logo {
   font-size: 24px;
   font-weight: bold;
-  background: linear-gradient(90deg, #ff5f6d, #ffc371);
+  background: linear-gradient(90deg, #04515f, #72abf1);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.logout {
+  color:"white";
+  background: linear-gradient(90deg, #a9f2ff, #a7f0e4);
+  
+}
+
 
 /* 
   header ul li {
@@ -41,7 +48,7 @@ header ul li::after {
   left: 9px;
   width: 80%;
   height: 2px;
-  background: linear-gradient(90deg, #ff5f6d, #ffc371);
+  background: linear-gradient(90deg, #026b88, #009188);
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
@@ -53,7 +60,7 @@ header ul li::after {
   left: 7px;
   width: 80%;
   height: 2px;
-  background: linear-gradient(90deg, #ff5f6d, #ffc371);
+  background: linear-gradient(90deg, #026b88, #009188);
   transform: scaleX(0);
   transition: transform 0.1s ease;
   transform: scaleX(1.2);

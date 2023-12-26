@@ -13,6 +13,8 @@ import WriteBlog from "./pages/WriteBlog";
 import SingleArticle from "./pages/SingleArticle";
 import Category from "./pages/Category";
 import EditArticle from "./pages/EditArticle";
+import About from './components/About/About';
+import './App.css';
 
 const App = () => {
   /* 
@@ -40,6 +42,7 @@ const App = () => {
             element={<SingleArticle />}
           />
           <Route path={`/edit/:articleId`} element={<EditArticle />} />
+          <Route path="/about" element={<About />} />
           <Route path='/sign-up' element={<Register />} />
           <Route path='/forgot-password' element={<ForgotPassword />} />
           <Route path='/sign-out' element={<Logout />} />

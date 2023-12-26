@@ -21,7 +21,7 @@ const Card = ({ id, blog, delHandler }) => {
     <div>
       <div
         onClick={() => navigate(`/category/${blog.blogData.category}/${id}`)}
-        className='google__btn__shadow relative mx-auto my-2 max-w-sm overflow-hidden rounded-lg border border-gray-200 bg-white bg-gradient-to-r from-gray-700 via-gray-900 to-black shadow transition-all  duration-200 ease-in-out hover:shadow-lg hover:shadow-sky-800 dark:border-gray-700 dark:bg-gray-800'
+        className='google__btn__shadow relative mx-auto my-2 max-w-sm overflow-hidden rounded-lg border border-gray-200 bg-white  shadow transition-all  duration-200 ease-in-out hover:shadow-lg hover:shadow-sky-800 dark:border-gray-700 dark:bg-gray-800'
       >
         <a href='#' className='transition-all duration-300 ease-in-out'>
           <LazyLoad
@@ -57,7 +57,7 @@ const Card = ({ id, blog, delHandler }) => {
                 ></path>
               </svg>
             </button>
-            <span className='absolute right-2 top-[14.8rem] cursor-pointer rounded-lg bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 px-3 py-2 text-sm font-medium focus:outline-none focus:ring-4 active:scale-95'>
+            <span className='absolute right-2 top-[14.8rem] cursor-pointer rounded-lg logout px-3 py-2 text-sm font-medium focus:outline-none focus:ring-4 active:scale-95'>
               {blog?.blogData?.category}
             </span>
 

@@ -81,7 +81,7 @@ const Header = () => {
           onClick={() => navigate("/")}
           className='logo cursor-pointer pl-4 text-lg sm:text-3xl'
         >
-          Write-it
+          Neelesh Shekhar
         </h1>
         <div
           onClick={() => setShow(!show)}
@@ -152,7 +152,7 @@ const Header = () => {
           {authenticated ? (
             <button
               onClick={handleLogout}
-              className={`${`${styles.li}`} mr-6 cursor-pointer rounded-md bg-gradient-to-r from-amber-500 to-pink-500 px-4 py-1 shadow-xl active:scale-95`}
+              className={`${`${styles.li}`} mr-6 cursor-pointer rounded-md logout px-4 py-1 shadow-xl active:scale-95`}
             >
               logout
             </button>
