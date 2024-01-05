@@ -1,7 +1,7 @@
 import { ClimbingBoxLoader } from "react-spinners";
 const Loader = () => {
   return (
-    <div className='absolute z-50 h-full w-full bg-black opacity-70 '>
+    <div className='absolute z-50 h-full w-full  opacity-70 '>
       <ClimbingBoxLoader
         className='absolute left-[50%] top-[300px] z-50 '
         color='#7336d6'

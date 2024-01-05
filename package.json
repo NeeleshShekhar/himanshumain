@@ -10,6 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.2",
+    "@mui/material": "^5.15.2",
+    "bootstrap": "^5.3.2",
     "dayjs": "^1.11.9",
     "firebase": "^9.22.1",
     "html-react-parser": "^4.2.0",
@@ -24,10 +29,14 @@
     "react-parallax-tilt": "^1.7.179",
     "react-quill": "^2.0.0",
     "react-router-dom": "^6.11.2",
+    "react-share": "^5.0.3",
+    "react-slick": "^0.29.0",
     "react-spinners": "^0.13.8",
     "react-textarea-autosize": "^8.5.2",
     "react-tsparticles": "^2.12.2",
     "react-wrap-balancer": "^1.0.0",
+    "recharts": "^2.10.3",
+    "slick-carousel": "^1.8.1",
     "sweetalert2": "^11.7.19",
     "uuid": "^9.0.0"
   },

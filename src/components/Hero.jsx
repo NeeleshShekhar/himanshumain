@@ -1,5 +1,6 @@
 import image from "../assets/8767132.jpg";
 import heroImg from "../assets/profile.png";
+import Tilt from "react-parallax-tilt";
 
 const Hero = () => {
   return (
@@ -7,11 +8,11 @@ const Hero = () => {
       
       <div className=''>
         <h1 className=' bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text py-3 text-3xl font-extrabold text-transparent lg:text-5xl'>
-          Hi There! 👋🏻
+          Hi There!👋🏻 
           <br />
           I'M Neelesh Shekhar
         </h1>
-        <p className='text-gray-400 md:pt-4 lg:text-lg'>
+        <p className='text-gray-600 md:pt-4 lg:text-lg'>
         An Individual with a Computer Science background with an excellent analytical perspective towards solving problems. I have experience in the Digital transformation of organizations by analyzing real data sets.
         </p>
       </div>

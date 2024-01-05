@@ -13,6 +13,13 @@ import {
 import { useEffect, useState } from "react";
 import { db } from "../config/firebase";
 import { getAuth } from "firebase/auth";
+import {
+  Container,
+  Typography,
+  Grid,
+  Paper,
+  Button,
+} from "@mui/material";
 import Loader from "../components/Loader";
 import Card from "../components/Card";
 import Swal from "sweetalert2";
@@ -26,16 +33,14 @@ const MyBlogs = () => {
 
   useEffect(() => {
     setLoading(true);
-    const fethUserData = async () => {
+    const fetchData = async () => {
       const blogRef = collection(db, "blogs");
-      // if query is under something then it should be written inside the backticks
       const q = query(
         blogRef,
         where(`author.id`, "==", auth.currentUser.uid),
         orderBy("timestamp", "desc")
       );
 
-      console.log(q);
       const docSnap = await getDocs(q);
       let blogs = [];
       docSnap.forEach((doc) => {
@@ -47,10 +52,10 @@ const MyBlogs = () => {
       setUserBlog(blogs);
       setLoading(false);
     };
-    fethUserData();
+    fetchData();
   }, []);
 
-  const delHandler = async (id) => {
+  const deleteHandler = async (id) => {
     const showConfirmation = () => {
       return Swal.fire({
         title: "Confirm Delete?",
@@ -77,32 +82,39 @@ const MyBlogs = () => {
   };
 
   return (
-    <div className='mx-auto max-w-7xl'>
-      <h1 className='my-12 bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text py-5 text-center text-5xl font-extrabold text-transparent'>
-        {/* from-red-500 to-orange-500 bg-clip-text text-transparent */}
-        My Articles
-      </h1>
+    <div style={{ margin: "auto", marginTop: "80px", width: "80%" }}>
+      
 
-      <div className='mx-auto mt-12 grid w-[80%] grid-cols-1 gap-5 md:w-[95%] md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3'>
+      <Grid container spacing={2}>
         {loading ? (
           Array.from({ length: 6 }).map((_, index) => (
-            <CardSkeleton key={index} />
+            <Grid item key={index} xs={12} md={6} lg={4}>
+              <CardSkeleton />
+            </Grid>
           ))
         ) : userBlog && userBlog.length > 0 ? (
           userBlog.map((blog, index) => (
-            <Card
-              key={index}
-              id={blog?.id}
-              blog={blog?.data}
-              delHandler={delHandler}
-            />
+            <Grid item key={index} xs={12} md={6} lg={4}>
+              <Card
+                id={blog?.id}
+                blog={blog?.data}
+                deleteHandler={deleteHandler}
+              />
+            </Grid>
           ))
         ) : (
-          <p className='mt-24 text-center text-4xl font-extrabold'>
-            You have not post any article yet!!
-          </p>
+          <Typography
+            style={{
+              marginTop: "120px",
+              textAlign: "center",
+              fontSize: "2rem",
+              fontWeight: "bold",
+            }}
+          >
+            You have not posted any article yet!!
+          </Typography>
         )}
-      </div>
+      </Grid>
     </div>
   );
 };

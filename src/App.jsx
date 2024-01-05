@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import MyBlogs from "./pages/MyBlogs";
-import SignIn from "./pages/SignIn";
-import Register from "./pages/Register";
+import SignIn from "./pages/SignIn/SignIn";
+import Register from "./pages/RegisterMe/Register";
 import Logout from "./pages/Logout";
 import ForgotPassword from "./pages/ForgotPassword";
 import Articles from "./pages/Articles";
@@ -14,7 +14,13 @@ import SingleArticle from "./pages/SingleArticle";
 import Category from "./pages/Category";
 import EditArticle from "./pages/EditArticle";
 import About from './components/About/About';
+import AccountPage from "./pages/Account";
 import './App.css';
+import Dashboard from "./pages/Dashboard/Dashboard";
+import CarouselInformation from "./pages/CaraouselAddition";
+import BlogPage from "./pages/AllArticle";
+import AboutMe from "./pages/AboutMe/Aboutme";
+import Footer from "./components/Footer";
 
 const App = () => {
   /* 
@@ -43,11 +49,18 @@ const App = () => {
           />
           <Route path={`/edit/:articleId`} element={<EditArticle />} />
           <Route path="/about" element={<About />} />
+          <Route path="/aboutme" element={<AboutMe />} />
           <Route path='/sign-up' element={<Register />} />
           <Route path='/forgot-password' element={<ForgotPassword />} />
           <Route path='/sign-out' element={<Logout />} />
+          <Route path="/account" element={<AccountPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/caraouseladdition" element={<CarouselInformation />} />
+          <Route path="/newblogs" element={<BlogPage/>  } />
         </Routes>
       </Router>
+      {/* <Footer/> */}
+
       <Toaster
         position='top-center'
         reverseOrder={false}

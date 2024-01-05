@@ -1,38 +1,96 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 const Tags = () => {
   const styles = {
-    categoryBtn:
-      "text-white bg-emerald-700 hover:bg-emerald-800 focus:outline-none focus:ring-4 focus:ring-emerald-300 font-medium rounded-full text-xs md:text-sm px-5 py-2 md:py-2.5 text-center mr-2 mb-2 dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800",
+    categoryBtn: {
+      color: "white",
+      backgroundColor: "#34D399",
+      "&:hover": {
+        backgroundColor: "#10B981",
+      },
+      "&:focus": {
+        outline: "none",
+        ring: "4px",
+        ringColor: "#34D399",
+      },
+      fontSize: "0.75rem",
+      padding: "8px 16px",
+      borderRadius: "999px",
+      textAlign: "center",
+      marginRight: "8px",
+      marginBottom: "8px",
+      dark: {
+        backgroundColor: "#22C55E",
+        "&:hover": {
+          backgroundColor: "#14B16E",
+        },
+        "&:focus": {
+          ringColor: "#22C55E",
+        },
+      },
+    },
+    container: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      margin: "24px 0",
+      overflowX: "auto",
+    },
+    mobileContainer: {
+      flexDirection: "column",
+      textAlign: "center",
+    },
+    mobileBtn: {
+      marginBottom: "12px",
+    },
   };
+
   return (
-    <ul className='mx-4 mt-6 flex items-center overflow-x-scroll pl-4 capitalize text-white md:mx-0  md:flex-wrap md:overflow-auto lg:justify-center lg:pl-0'>
-      <li className={`${styles.categoryBtn}`}>
-        <Link to={"/category/entertainment"}>entertainment</Link>{" "}
-      </li>
+    <div style={styles.container}>
+      <Button sx={styles.categoryBtn}>
+        <Link to={"/category/entertainment"} style={{ textDecoration: "none", color: "inherit" }}>
+          Entertainment
+        </Link>
+      </Button>
 
-      <li className={`${styles.categoryBtn}`}>
-        <Link to={"/category/knowledge"}>Knowledge</Link>{" "}
-      </li>
+      <Button sx={styles.categoryBtn}>
+        <Link to={"/category/knowledge"} style={{ textDecoration: "none", color: "inherit" }}>
+          Knowledge
+        </Link>
+      </Button>
 
-      <li className={`${styles.categoryBtn}`}>
-        <Link to={"/category/programming"}>Programming</Link>{" "}
-      </li>
+      <Button sx={styles.categoryBtn}>
+        <Link to={"/category/programming"} style={{ textDecoration: "none", color: "inherit" }}>
+          Programming
+        </Link>
+      </Button>
 
-      <li className={`${styles.categoryBtn}`}>
-        <Link to={"/category/productivity"}>productivity</Link>{" "}
-      </li>
-      <li className={`${styles.categoryBtn}`}>
-        <Link to={"/category/lifestyle"}>lifestyle</Link>{" "}
-      </li>
-      <li className={`${styles.categoryBtn}`}>
-        <Link to={"/category/desgin"}>desing</Link>{" "}
-      </li>
-      <li className={`${styles.categoryBtn}`}>
-        <Link to={"/category/travel"}>travel</Link>{" "}
-      </li>
-    </ul>
+      <Button sx={styles.categoryBtn}>
+        <Link to={"/category/productivity"} style={{ textDecoration: "none", color: "inherit" }}>
+          Productivity
+        </Link>
+      </Button>
+
+      <Button sx={styles.categoryBtn}>
+        <Link to={"/category/lifestyle"} style={{ textDecoration: "none", color: "inherit" }}>
+          Lifestyle
+        </Link>
+      </Button>
+
+      <Button sx={styles.categoryBtn}>
+        <Link to={"/category/desgin"} style={{ textDecoration: "none", color: "inherit" }}>
+          Design
+        </Link>
+      </Button>
+
+      <Button sx={styles.categoryBtn}>
+        <Link to={"/category/travel"} style={{ textDecoration: "none", color: "inherit" }}>
+          Travel
+        </Link>
+      </Button>
+    </div>
   );
 };
 

@@ -1,0 +1,39 @@
+/* Dashboard */
+
+/* Dashboard.css */
+body {
+    margin: 0;
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  }
+  
+  .root {
+    display: flex;
+  }
+  
+  .appBar {
+    zIndex: 1201; /* theme.zIndex.drawer + 1 */
+  }
+  
+  .drawer {
+    width: 240px;
+    flex-shrink: 0;
+  }
+  
+  .drawerPaper {
+    width: 240px;
+  }
+  
+  .content {
+    flex-grow: 1;
+    padding: 20px;
+  }
+  
+  .toolbar {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    justify-content: flex-end;
+  }
+  
+  /* Add any additional styling here */
+

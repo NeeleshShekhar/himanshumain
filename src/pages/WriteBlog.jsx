@@ -73,6 +73,7 @@ const WriteBlog = () => {
           blogData,
           imageUrl,
           comments: [],
+          isPublished: "false",
         });
         navigate(`/myBlogs/${auth.currentUser.uid}`);
         setLoading(false);

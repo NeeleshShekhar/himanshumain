@@ -1,32 +1,42 @@
+import React, { useEffect, useState } from "react";
+import { Link as RouterLink, useLocation, useNavigate } from "react-router-dom";
+import {
+  AppBar,
+  Box,
+  IconButton,
+  Link,
+  Toolbar,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  Menu,
+  MenuItem,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import Logo from "../assets/Neele.png";
+
 
 const Header = () => {
   const auth = getAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const [authenticated, setAuthenticated] = useState(false);
-  const [show, setShow] = useState(false);
+  const [showDrawer, setShowDrawer] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   useEffect(() => {
-    const checkStatus = async () => {
+    const checkStatus = () => {
       onAuthStateChanged(auth, (user) => {
-        if (user) {
-          setAuthenticated(true);
-        } else {
-          setAuthenticated(false);
-        }
+        setAuthenticated(!!user);
       });
     };
     checkStatus();
   }, [auth]);
-
-  useEffect(() => {
-    setShow(false);
-  }, [location.pathname]);
 
   const handleLogout = async () => {
     const result = await Swal.fire({
@@ -49,134 +59,118 @@ const Header = () => {
 
     if (result.isConfirmed) {
       try {
-        const auth = getAuth();
         await signOut(auth);
         navigate("/");
-        toast.success(
-          "Logged Out, You have been logged out successfully",
-          "success"
-        );
+        toast.success("Logged Out", "You have been logged out successfully");
       } catch (error) {
-        console.log(error);
-        toast.error(
-          "Error",
-          "An error occurred while loggin out. Please try again"
-        );
+        console.error(error);
+        toast.error("Error", "An error occurred while logging out. Please try again");
       }
     }
   };
 
-  const styles = {
-    li: "hover:text-slate-300 ease-in-out transition duration-200 relative inline-block capitalize",
-    mobileMenu: `absolute space-y-5 ease-in-out duration-500 transition-all text-2xl font-semibold ${
-      show
-        ? "translate-x-0 h-screen w-full top-12 bg-black justify-center"
-        : "-translate-x-full top-12"
-    } `,
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
   };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleAccountClick = () => {
+    handleMenuClose();
+    navigate("/account");
+  };
+
+  const navLinks = [
+    { label: "Home", to: "/" },
+    { label: "Articles", to: "/articles" },
+    { label: "About Me", to: "/aboutme" },
+    // authenticated && { label: "My Blogs", to: `/myblogs/${auth.currentUser.uid}` },
+    !authenticated && { label: "Sign In", to: "/sign-in" },
+  ].filter(Boolean);
+
+  const renderLinks = () => (
+    <Box sx={{ display: { xs: "none", md: "block" } }}>
+      {navLinks.map((link) => (
+        <Link
+          key={link.to}
+          component={RouterLink}
+          to={link.to}
+          color="inherit"  // Set link color to black
+          sx={{ mx: 2, textDecoration: "none" }}
+          className={location.pathname === link.to && "highlight"}
+        >
+          {link.label}
+        </Link>
+      ))}
+    </Box>
+  );
+
   return (
-    <header className='header sticky top-0 z-40'>
-      <div className='relative mx-auto flex max-w-7xl items-center justify-between py-3 font-raleway'>
-        <h1
-          onClick={() => navigate("/")}
-          className='logo cursor-pointer pl-4 text-lg sm:text-3xl'
-        >
-          Neelesh Shekhar
-        </h1>
-        <div
-          onClick={() => setShow(!show)}
-          className='mr-3 cursor-pointer space-y-1 transition-all duration-200 ease-in-out md:hidden'
-        >
-          <span
-            className={`block h-[2px] w-6 rounded-full bg-white transition-all duration-200 ease-in-out ${
-              show ? "translate-y-2 rotate-[50deg]" : "translate-y-0 rotate-0"
-            } `}
-          ></span>
-          <span
-            className={`block h-[2px] w-6 rounded-full bg-white transition-all duration-200 ease-in-out ${
-              show ? "opacity-0" : "opacity-100"
-            } `}
-          ></span>
-          <span
-            className={`block h-[2px] w-6 rounded-full bg-white transition-all duration-200 ease-in-out ${
-              show
-                ? "-translate-y-1 -rotate-[50deg]"
-                : " translate-y-0 rotate-0"
-            } `}
-          ></span>
-        </div>
-        {/* Nav links */}
-        <nav
-          className={`absolute mr-4 flex items-center space-y-6 py-12 text-center text-lg transition-all duration-500 ease-in-out md:static md:h-auto md:w-auto md:translate-x-0 md:flex-row md:space-x-5 md:space-y-0 md:bg-transparent md:py-0 md:text-left ${
-            show
-              ? "top-12 h-screen w-full translate-x-0 flex-col bg-black"
-              : "top-12 h-screen w-full -translate-x-full flex-col bg-black"
-          } `}
-        >
-          <li
-            className={`${styles.li} ${
-              location.pathname === "/" && "highlight"
-            } `}
+    <div className="container">
+      <AppBar position="sticky" style={{ background: "white",color:"black" }} elevation={0}>
+        <Toolbar>
+          <a href="/"><img loading="lazy" src={Logo} alt="" width="200px"  /></a>
+          <Box sx={{ flexGrow: 1 }} />
+          <IconButton
+            onClick={() => setShowDrawer(true)}
+            edge="end"
+            color="inherit"
+            aria-label="menu"
+            sx={{ display: { md: "none" } }}
           >
-            <Link to='/'>Home</Link>
-          </li>
-          <li
-            className={`${styles.li} ${
-              location.pathname === "/articles" && "highlight"
-            } `}
-          >
-            <Link to='/articles'>Articles</Link>
-          </li>
-          {authenticated && (
-            <li
-              className={`${styles.li} ${
-                location.pathname === `/>myblogs/${auth.currentUser.uid}` &&
-                "highlight"
-              } `}
-            >
-              <Link to={`/myblogs/${auth.currentUser.uid}`}>My Blogs</Link>
-            </li>
-          )}
-
-          {/* Write Blog */}
-          {authenticated && (
-            <li
-              className={`${styles.li} ${
-                location.pathname === "/write" && "highlight"
-              } `}
-            >
-              <Link to='/write'>Write</Link>
-            </li>
-          )}
-
+            <MenuIcon />
+          </IconButton>
           {authenticated ? (
-            <button
-              onClick={handleLogout}
-              className={`${`${styles.li}`} mr-6 cursor-pointer rounded-md logout px-4 py-1 shadow-xl active:scale-95`}
-            >
-              logout
-            </button>
+            <>
+              {renderLinks()}
+              <IconButton
+                color="inherit"
+                onClick={handleMenuOpen}
+                sx={{ textDecoration: "none" }}
+              >
+                <AccountCircleIcon />
+              </IconButton>
+              <Menu
+                id="user-menu"
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleMenuClose}
+              >
+                <MenuItem onClick={handleAccountClick}>Dashboard</MenuItem>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+              </Menu>
+            </>
           ) : (
-            <li
-              className={`${styles.li} ${
-                location.pathname === "/sign-in" && "highlight"
-              } `}
-            >
-              <Link to='/sign-in'>sign-in</Link>
-            </li>
+            renderLinks()
           )}
-        </nav>
-      </div>
-    </header>
+        </Toolbar>
+      </AppBar>
+      <Drawer anchor="right" open={showDrawer} onClose={() => setShowDrawer(false)}>
+        <List>
+          {navLinks.map((link) => (
+            <ListItem
+              key={link.to}
+              button
+              component={RouterLink}
+              to={link.to}
+              onClick={() => setShowDrawer(false)}
+              sx={{ textDecoration: "none" }}
+              className={location.pathname === link.to && "highlight"}
+            >
+              <ListItemText primary={link.label} />
+            </ListItem>
+          ))}
+          {authenticated && (
+            <ListItem button onClick={handleLogout}>
+              <ListItemText primary="Logout" />
+            </ListItem>
+          )}
+        </List>
+      </Drawer>
+    </div>
   );
 };
 
 export default Header;
-
-/* space-y-7 py-10 text-2xl font-semibold transition-all duration-500 ease-in-out
-           ${
-             show
-               ? "top-12 h-screen w-full flex-col bg-black "
-               : "top-12 h-screen -translate-x-full flex-col"
-           } 
-          md:flex-ro md:inline-block md:h-auto md:space-x-4 md:space-y-0 md:py-0 md:text-lg md:transition-none */

@@ -17,7 +17,7 @@ const CommentTextArea = ({ inputText, onChangeHandler, auth }) => {
         value={inputText}
         onChange={onChangeHandler}
         placeholder='Leave a comment...'
-        className='w-full rounded-lg text-zinc-800 '
+        className='w-full rounded-lg  '
       />
     </>
   );

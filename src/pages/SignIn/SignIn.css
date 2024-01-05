@@ -1,0 +1,66 @@
+/* SignIn.css */
+
+.sign-in-container {
+    padding: 20px;
+    /* Add other global styles if needed */
+  }
+  
+  .sign-in-header {
+    margin-bottom: 20px;
+    /* Add styles for the header */
+  }
+  
+  .sign-in-content {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .left-column {
+    flex: 1;
+  }
+  
+  .background-image {
+    width: 100%;
+  }
+  
+  .right-column {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .sign-in-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-input {
+    margin-bottom: 20px;
+  }
+  
+  .additional-options {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .register-link,
+  .forgot-password-link {
+    cursor: pointer;
+    color: #007BFF;
+  }
+  
+  .login-button {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .divider {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .divider-text {
+    margin: 0 10px;
+  }
+  

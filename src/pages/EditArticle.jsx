@@ -132,7 +132,7 @@ const EditArticle = () => {
   return (
     <div className='h-full bg-gray-200 pb-20'>
       <h1 className='bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text py-4 pt-14 text-center font-raleway text-4xl font-extrabold text-transparent md:text-5xl'>
-        <Balancer>Create a new blog post</Balancer>
+        {/* <Balancer>Create a new blog post</Balancer> */}
       </h1>
       <form
         onSubmit={onSubmitHandler}
@@ -162,11 +162,11 @@ const EditArticle = () => {
         />
         <BlogEditor blogData={blogData} setBlogData={setBlogData} />
         <div className='mx-auto my-8 mt-20 w-full max-w-[50%] md:mt-0 lg:max-w-[40%] '>
-          <button
+          <br /><button
             type='submit'
             className='mt-8 w-full cursor-pointer rounded-md bg-gradient-to-r from-violet-600 to-indigo-600 py-3 font-semibold text-white transition duration-200 ease-in-out active:scale-90'
           >
-            Update post
+            Post Article for Review
           </button>
         </div>
       </form>

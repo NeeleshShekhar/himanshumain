@@ -1,12 +1,16 @@
-import React from "react";
+import React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 
 const Footer = () => {
   return (
-    <div>
-      Image by{" "}
-      <a href='https://www.freepik.com/free-vector/hand-drawn-essay-illustration_39879138.htm#query=writing&position=14&from_view=search&track=locales'>
-        Freepik
-      </a>
+    <div style={{bottom: 0, width: '100%', background: 'rgb(2, 141, 222)' }}>
+      <Toolbar style={{ justifyContent: 'center' }}>
+        <Typography variant="body1" color="inherit">
+          Your Footer Content Here
+        </Typography>
+      </Toolbar>
     </div>
   );
 };

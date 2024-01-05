@@ -51,8 +51,8 @@
     position: relative   ;
     padding-top: 150px   ;
     padding-bottom: 30px   ;
-    background-color: #060707;
-    color: white   ;
+    background-color: #ffffff;
+    color: rgb(6, 74, 99)   ;
   }
   
   .tech-icons {
@@ -96,6 +96,7 @@
     color: rgb(0, 0, 0)   ;
     background-color: white   ;
     border-radius: 25px;
+    box-shadow: 0 0 15px #181818;
    
     
   }
@@ -211,7 +212,7 @@
     box-shadow: none !important;
   }
   .project-heading {
-    color: white !important;
+    color: rgb(3, 25, 60) !important;
     font-size: 2.3em !important;
     font-weight: 500 !important;
     padding-top: 10px !important;
@@ -237,7 +238,7 @@
     background-color: #1f0126;
   }
   
-  .wave {
+  .imagewave {
     animation-name: wave-animation; /* Refers to the name of your @keyframes element below */
     animation-duration: 2.1s; /* Change to speed up or slow down */
     animation-iteration-count: infinite; /* Never stop waving :) */
@@ -343,7 +344,7 @@
   }
   
   .home-about-description {
-    color: white !important;
+    color: rgb(0, 69, 84) !important;
     padding-top: 100px !important;
     padding-bottom: 20px !important;
     text-align: center;
@@ -460,3 +461,157 @@
   .blockquote-footer {
     color: #a588c0 !important;
   }
+
+
+  @font-face {
+    font-family: 'logofont'; /* Choose a name for your font */
+    src: url('./Fonts/CastoroTitling-Regular.ttf') format('truetype'); /* Adjust the path and format accordingly */
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  .logo-main{
+    font-family: 'logofont', sans-serif; 
+  }
+
+  /* app.css */
+
+/* Style for the main container */
+.single-article-container {
+  max-width: 800px; /* Adjust as needed */
+  margin: 0 auto;
+  color: #333; /* Change text color */
+  padding: 20px;
+}
+
+/* Style for the article image */
+.article-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Style for the author information */
+.author-info {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.author-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* Style for the share button */
+.share-button {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+
+.whatsapp-icon {
+  font-size: 35px;
+  color: green;
+  margin-right: 10px;
+}
+
+/* Style for the tags */
+.tags {
+  margin: 10px 0;
+}
+
+.tag {
+  margin-right: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #4caf50; /* Change the background color */
+  color: white; /* Change text color */
+}
+
+/* Style for the article title */
+.article-title {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Style for the article content */
+.article-content {
+  margin-top: 20px;
+  line-height: 1.5;
+}
+
+/* Style for the comments section */
+.comments-section {
+  margin: 20px 0;
+}
+
+/* Style for each comment */
+.comment {
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f0f0f0; /* Change the background color */
+}
+
+.comment-info {
+  display: flex;
+  align-items: center;
+}
+
+.comment-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.comment-username {
+  font-weight: bold;
+}
+
+.comment-date {
+  color: #888;
+  margin-left: 10px;
+}
+
+/* Style for the social media sharing options */
+.social-media-sharing {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+/* Add your additional styles here */
+
+.articleimage{
+  margin: 50px;
+  width: 100px;
+}
+
+
+
+/*New*/
+
+/* caraousel */
+.carousel-control-prev, .carousel-control-next {
+  
+  background-color: black;
+  border-radius: 50%;
+  border: none;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  background-color: rgb(0, 44, 88); 
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  
+}
+
