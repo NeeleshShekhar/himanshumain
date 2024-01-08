@@ -21,6 +21,7 @@ import CarouselInformation from "./pages/CaraouselAddition";
 import BlogPage from "./pages/AllArticle";
 import AboutMe from "./pages/AboutMe/Aboutme";
 import Footer from "./components/Footer";
+import ArticleMain from "./pages/Blogs/Main";
 
 const App = () => {
   /* 
@@ -40,7 +41,7 @@ const App = () => {
             <Route path='/myBlogs/:userId' element={<MyBlogs />} />
             <Route path='/write' element={<WriteBlog />} />
           </Route>
-          <Route path='/articles' element={<Articles />} />
+          <Route path='/articles' element={<ArticleMain />} />
           <Route path='/sign-in' element={<SignIn />} />
           <Route path={`/category/:categoryName`} element={<Category />} />
           <Route
@@ -56,7 +57,7 @@ const App = () => {
           <Route path="/account" element={<AccountPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/caraouseladdition" element={<CarouselInformation />} />
-          <Route path="/newblogs" element={<BlogPage/>  } />
+          <Route path="/newblogs" element={<ArticleMain/>  } />
         </Routes>
       </Router>
       {/* <Footer/> */}
