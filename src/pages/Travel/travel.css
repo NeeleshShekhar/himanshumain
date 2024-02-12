@@ -1,0 +1,100 @@
+.carousel-container {
+    /* position: fixed; */
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    /* Send the carousel to the background */
+}
+
+.carousel-caption {
+    text-align: center;
+    top: 30%;
+}
+
+.carousel-title {
+    font-size: 50px;
+    font-weight: 600;
+}
+
+.carousel-desc {
+    font-size: 20px;
+}
+
+.caraousel-main {
+    height: 70vh;
+}
+
+.caraousel-img {
+    height: 70vh;
+}
+
+/* Add any additional styles as needed */
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 16px;
+}
+
+.image-grid a {
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.image-grid img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease-in-out;
+}
+
+.image-grid img:hover {
+    transform: scale(1.1);
+}
+
+
+/* Media query for phones */
+@media only screen and (max-width: 767px) {
+    .carousel-container {
+        /* Add specific styles for phones */
+    }
+
+    .carousel-caption {
+        /* Add specific styles for phones */
+
+    }
+
+    .carousel-title {
+        /* Add specific styles for phones */
+        font-size: 40px;
+        font-weight: 600;
+        /* Example: reducing font size for phones */
+    }
+
+    .carousel-desc {
+        display: none;
+    }
+
+    .caraousel-main {
+        height: 100vh;
+    }
+
+    .caraousel-img {
+        height: 90vh;
+    }
+
+
+    /* Add any additional styles for phones as needed */
+}
+
+
+.texttravelblogal {
+    display: none;
+  }
+  
+  /* Show the div on hover */
+  .hoverContainer:hover .texttravelblogal {
+    
+  }

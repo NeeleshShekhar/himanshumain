@@ -34,9 +34,13 @@ const AccountInfoTable = ({ email, name, numberOfBlogs, superUser }) => {
             <TableCell>Number of Blogs</TableCell>
             <TableCell>{numberOfBlogs}</TableCell>
           </TableRow>
-          <TableRow rowSpan={2}>
+          <TableRow rowSpan={2} >
             <TableCell>{superUser && <Button component={Link} to="/write" variant="contained" color="primary">
               Go to Write
+            </Button>}</TableCell>
+
+            <TableCell>{superUser && <Button component={Link} to="/WriteTravelGallery" variant="contained" color="primary">
+              Go to Write Travel
             </Button>}</TableCell>
 
           </TableRow>
@@ -73,15 +77,6 @@ const BlogCard = ({ blog }) => {
   );
 };
 
-const BlogTable = ({ blogs }) => {
-  return (
-    <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
-      {blogs.map((blog) => (
-        <BlogCard key={blog.uuid} blog={blog} />
-      ))}
-    </div>
-  );
-};
 
 const AccountPage = () => {
   const auth = getAuth();
@@ -114,6 +109,7 @@ const AccountPage = () => {
 
       if (userDocSnap.exists()) {
         setUserData(userDocSnap.data());
+        console.log(userData);
       } else {
         setError("User data not found");
       }

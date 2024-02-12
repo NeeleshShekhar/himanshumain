@@ -19,6 +19,9 @@ import {
   Grid,
   Paper,
   Button,
+  TextField,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import Loader from "../components/Loader";
 import Card from "../components/Card";
@@ -31,16 +34,41 @@ const MyBlogs = () => {
   const [loading, setLoading] = useState(false);
   const [userBlog, setUserBlog] = useState(null);
 
+  const [categoryFilter, setCategoryFilter] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortBy, setSortBy] = useState("timestamp");
+  const [sortOrder, setSortOrder] = useState("desc");
+
   useEffect(() => {
     setLoading(true);
     const fetchData = async () => {
       const blogRef = collection(db, "blogs");
-      const q = query(
+
+      let q = query(
         blogRef,
         where(`author.id`, "==", auth.currentUser.uid),
-        orderBy("timestamp", "desc")
+        orderBy(sortBy, sortOrder)
       );
 
+      if (categoryFilter !== "") {
+        q = query(
+          blogRef,
+          where(`author.id`, "==", auth.currentUser.uid),
+          where("category", "==", categoryFilter),
+          orderBy(sortBy, sortOrder)
+        );
+      }
+
+      if (searchQuery !== "") {
+        q = query(
+          blogRef,
+          where(`author.id`, "==", auth.currentUser.uid),
+          where("title", ">=", searchQuery), // Use ">=" for partial matching
+          where("title", "<=", searchQuery + "\uf8ff"), // "\uf8ff" is a high surrogate that covers all characters
+          orderBy(sortBy, sortOrder)
+        );
+      }
+      
       const docSnap = await getDocs(q);
       let blogs = [];
       docSnap.forEach((doc) => {
@@ -53,7 +81,7 @@ const MyBlogs = () => {
       setLoading(false);
     };
     fetchData();
-  }, []);
+  }, [categoryFilter, searchQuery, sortBy, sortOrder]);
 
   const deleteHandler = async (id) => {
     const showConfirmation = () => {
@@ -83,7 +111,45 @@ const MyBlogs = () => {
 
   return (
     <div style={{ margin: "auto", marginTop: "80px", width: "80%" }}>
-      
+      <div style={{ marginBottom: "20px" }}>
+        <TextField
+          label="Search Title"
+          variant="outlined"
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <Select
+          value={categoryFilter}
+          onChange={(e) => setCategoryFilter(e.target.value)}
+          style={{ marginLeft: "10px" }}
+        >
+          <MenuItem value="">All Categories</MenuItem>
+          {/* Add your category options dynamically */}
+          <MenuItem value="category1">Category 1</MenuItem>
+          <MenuItem value="category2">Category 2</MenuItem>
+          {/* Add more categories as needed */}
+        </Select>
+      </div>
+
+      <div style={{ marginBottom: "20px" }}>
+        <Typography variant="subtitle1" style={{ marginRight: "10px" }}>
+          Sort By:
+        </Typography>
+        <Select
+          value={sortBy}
+          onChange={(e) => setSortBy(e.target.value)}
+          style={{ marginRight: "10px" }}
+        >
+          <MenuItem value="timestamp">Date</MenuItem>
+          {/* Add more sorting options as needed */}
+        </Select>
+        <Select
+          value={sortOrder}
+          onChange={(e) => setSortOrder(e.target.value)}
+        >
+          <MenuItem value="desc">Descending</MenuItem>
+          <MenuItem value="asc">Ascending</MenuItem>
+        </Select>
+      </div>
 
       <Grid container spacing={2}>
         {loading ? (

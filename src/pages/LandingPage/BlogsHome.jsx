@@ -1,21 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import Search from "../components/Search";
+import Search from "../../components/Search";
 import { Container, Carousel, Row, Col } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import { collection, getDocs, limit, orderBy, query, where } from "firebase/firestore";
-import { db } from "../config/firebase";
-import Card from "../components/Card";
-import Hero from "../components/Hero";
+import { db } from "../../config/firebase";
+import Card from "../../components/Card";
+import Hero from "../../components/Hero";
 import { Balancer } from "react-wrap-balancer";
-import Tags from "../components/common/Tags";
-import Loader from "../components/Loader";
-import CardSkeleton from "../components/skeleton/CardSkeleton";
-import Home2 from "./LandingPage/Home2";
-import Home3 from "./LandingPage/Home3";
-import HomeCaraousel from "../components/HomeCaraousel";
+import Tags from "../../components/common/Tags";
+import Loader from "../../components/Loader";
+import CardSkeleton from "../../components/skeleton/CardSkeleton";
+import Home2 from "./Home2";
+import Home3 from "./Home3";
+import HomeCaraousel from "../../components/HomeCaraousel";
+import { Grid } from "@mui/material";
 
-const Home = (props) => {
+const BlogsHome = (props) => {
   const [latestBlogs, setLatestBlogs] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -50,21 +51,16 @@ const Home = (props) => {
 
   return (
     <div className=''>
-      <div>
-        {/* Hero */}
-        <HomeCaraousel />
-      </div>
-      {/* Categories */}
-      <Tags />
 
       {/* Articles Carousel */}
       <Container fluid className="mx-auto max-w-7xl transition-all duration-300 ease-in-out">
         <Carousel className="mt-4">
           {loading ? (
-            Array.from({ length: 6 }).map((_, index) => (
-              <Carousel.Item key={index}>
-                {renderCardsInGroup([])}
-              </Carousel.Item>
+           Array.from({ length: 1 }).map((_, index) => (
+            <Grid item key={index} xs={12} sm={6} md={4}>
+              <CardSkeleton />
+            </Grid>
+          
             ))
           ) : latestBlogs && latestBlogs.length > 0 ? (
             Array.from({ length: Math.ceil(latestBlogs.length / 3) }).map((_, index) => (
@@ -82,9 +78,9 @@ const Home = (props) => {
         </Carousel>
       </Container>
 
-      <Home2 />
+      
     </div>
-  ); 
+  );
 };
 
-export default Home;
+export default BlogsHome;

@@ -21,8 +21,8 @@ const Card = ({ id, blog, delHandler }) => {
     <div>
       <MuiCard
         onClick={() => navigate(`/category/${blog.blogData.category}/${id}`)}
-        className='google__btn__shadow relative mx-auto my-2 max-w-sm overflow-hidden rounded-lg border border-gray-200 bg-white shadow transition-all duration-200 ease-in-out hover:shadow-lg hover:shadow-sky-800 dark:border-gray-700 dark:bg-gray-800'
-      >
+        className='google__btn__shadow relative mx-auto my-2 max-w-sm overflow-hidden rounded-lg  bg-white  transition-all duration-200 ease-in-out '
+      elevation={0}>
         <a href='#' className='transition-all duration-300 ease-in-out'>
           <LazyLoad
             classes={

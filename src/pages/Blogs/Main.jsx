@@ -18,6 +18,8 @@ import FeaturedBlogCard from './Blogs';
 import Loader from "../../components/Loader";
 import FeaturedBlog from "./FeaturedBlog";
 import Blogs from "./Blogs";
+import "./blogs.css";
+
 const ArticleMain = () => {
     const [blogsData, setBlogsData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -45,15 +47,16 @@ const ArticleMain = () => {
         };
 
         fetchBlogs();
-        // console.log("blogs", blogsData)
+        console.log("blogs from main", blogsData)
     }, []);
 
+    
 
     return (
         <Container maxWidth="xl">
             {/* Tags/categories */}
             <Tags />
-            <FeaturedBlog />
+            <FeaturedBlog blogsData={blogsData} />
             <Blogs />
         </Container>
     );

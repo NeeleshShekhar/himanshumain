@@ -15,7 +15,7 @@ const OAuth = () => {
       const provider = new GoogleAuthProvider();
       const userCredentials = await signInWithPopup(auth, provider);
       const user = userCredentials.user;
-      const su = "false";
+      const su = false;
 
       await setDoc(doc(db, "users", user.uid), {
         name: user.displayName,

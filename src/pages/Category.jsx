@@ -15,7 +15,7 @@ import Card from "../components/Card";
 import Loader from "../components/Loader";
 import CardSkeleton from "../components/skeleton/CardSkeleton";
 
-const Category = () => {
+const OldCategory = () => {
   const [BlogData, setBlogData] = useState(null);
   const [loading, setLoading] = useState(true);
   const params = useParams();
@@ -82,4 +82,4 @@ const Category = () => {
   );
 };
 
-export default Category;
+export default OldCategory;

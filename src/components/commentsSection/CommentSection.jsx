@@ -14,12 +14,18 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { v4 as uuidv4 } from "uuid";
 import Swal from "sweetalert2";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+
+import "./commentSection.css"; // Import the custom CSS file
 
 const CommentSection = () => {
   const auth = getAuth();
   const { articleId } = useParams();
   const [loading, setLoading] = useState(false);
   const [inputText, setinputText] = useState("");
+
   const onChangeHandler = (e) => {
     setinputText(e.target.value);
   };
@@ -38,10 +44,10 @@ const CommentSection = () => {
           timestamp: new Date().toISOString(),
           uuid: uuidv4(),
         };
-        // Fetching existing blogData
+
         const blogSnapshot = await getDoc(blogRef);
         const blogData = blogSnapshot.data();
-        // Add the comments to a new field "comments" in the existing blog data
+
         if (!blogData.comments) {
           await setDoc(blogRef, { ...blogData, comments: [commentData] });
         } else {
@@ -50,18 +56,16 @@ const CommentSection = () => {
           });
         }
 
-        // Update the document with the new blogData containing comments
-        // await setDoc(blogRef, blogData);
         setinputText("");
         toast.success("Comment Posted!!");
         console.log("Try finished");
+        window.location.reload();
       }
     } catch (error) {
       if (!auth.currentUser) {
         Swal.fire("You need to be logged in to post a comment.");
       }
-      console.log(error);
-      // toast.error("Unable to post comment");
+      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -70,23 +74,26 @@ const CommentSection = () => {
   if (loading) {
     return <Loader />;
   }
+
   return (
-    <div className='mt-4'>
-      <h1 className='py-3 text-2xl text-cyan-800'>Comments ~</h1>
-      <form onSubmit={onSubmitHandler}>
-        {/* change to falsy */}
+    <div className="">
+      {/* <Typography variant="h4" className="comment-section-title">
+        Comments
+      </Typography> */}
+      <form onSubmit={onSubmitHandler} className="comment-form">
         <CommentTextArea
           inputText={inputText}
           onChangeHandler={onChangeHandler}
           auth={auth}
         />
-        <button
-          onSubmit={onSubmitHandler}
-          type='submit'
-          className='mt-8 w-full cursor-pointer rounded-md bg-gradient-to-r from-violet-600 to-indigo-600 py-3 font-semibold text-white transition duration-200 ease-in-out active:scale-90'
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          className="post-comment-button"
         >
           Post comment
-        </button>
+        </Button>
       </form>
     </div>
   );

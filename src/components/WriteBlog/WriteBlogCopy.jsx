@@ -2,12 +2,12 @@ import { useState } from "react";
 import { getAuth } from "firebase/auth";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 // import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage"
-import { db } from "../config/firebase";
+import { db } from "../../../config/firebase";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import Loader from "../components/Loader";
+import Loader from "../../Loader";
 import { v4 as uuidv4 } from "uuid";
-import BlogEditor from "../components/BlogEditor";
+import BlogEditor from "../../BlogEditor";
 import { Balancer } from "react-wrap-balancer";
 
 const WriteBlog = () => {
@@ -399,6 +399,7 @@ const WriteBlog = () => {
             )}
           </div>
         </div>
+
         <div style={{ height: "360px" }}>
           <BlogEditor
             blogData={blogData}
@@ -406,7 +407,9 @@ const WriteBlog = () => {
             onchangeHandler={onChangeHandler}
           />
         </div>
+
         <hr className='mt-8 border-gray-600' />
+        
         <div className='mx-auto my-8 w-full max-w-[50%] lg:max-w-[40%] '>
           <button
             type='submit'

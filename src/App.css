@@ -463,12 +463,7 @@
   }
 
 
-  @font-face {
-    font-family: 'logofont'; /* Choose a name for your font */
-    src: url('./Fonts/CastoroTitling-Regular.ttf') format('truetype'); /* Adjust the path and format accordingly */
-    font-weight: normal;
-    font-style: normal;
-  }
+
 
   .logo-main{
     font-family: 'logofont', sans-serif; 
@@ -615,3 +610,25 @@
   
 }
 
+
+
+@font-face {
+  font-family: 'logofont'; /* Choose a name for your font */
+  src: url('./Fonts/CastoroTitling-Regular.ttf') format('truetype'); /* Adjust the path and format accordingly */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PopinsMedium'; /* Choose a name for your font */
+  src: url('./Fonts/Poppins-Medium.ttf') format('truetype'); /* Adjust the path and format accordingly */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PopinsExtraBold'; /* Choose a name for your font */
+  src: url('./Fonts/Poppins-ExtraBold.ttf') format('truetype'); /* Adjust the path and format accordingly */
+  font-weight: normal;
+  font-style: normal;
+}

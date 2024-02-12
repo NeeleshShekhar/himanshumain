@@ -1,0 +1,27 @@
+.comment-section-container {
+    margin-top: 20px;
+  }
+  
+  .comment-section-title {
+    padding: 10px 0;
+    font-size: 1.5rem;
+    color: #00796b; /* Adjust the color as needed */
+  }
+  
+  .comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .post-comment-button {
+    margin-top: 20px;
+    background: linear-gradient(to right, #8e24aa, #3949ab); /* Adjust the colors */
+    color: #fff;
+    font-weight: bold;
+    transition: background 0.3s ease;
+  }
+  
+  .post-comment-button:hover {
+    background: linear-gradient(to right, #7b1fa2, #303f9f); /* Adjust the hover colors */
+  }

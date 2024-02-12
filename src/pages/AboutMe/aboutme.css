@@ -12,7 +12,7 @@
 .title-area {
     float: left;
     border-radius: 20px;
-    background: #73888b;
+    background: #ffffff;
     color: #3f3e3e;
     padding-left: 5%;
     padding-right: 5%;
@@ -26,7 +26,7 @@
 .check {
     display: flex;
     justify-content: center;   
-    box-shadow: #3f3e3e;
+    box-shadow: #ffffff;
 }
 
 .aboutparagraph{

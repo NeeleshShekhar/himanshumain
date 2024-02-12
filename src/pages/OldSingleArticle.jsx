@@ -18,8 +18,8 @@ import {
   WhatsappShareButton,
 } from 'react-share';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-
-const SingleArticle = () => {
+ 
+const OldSingleArticle = () => {
   const auth = getAuth();
   const [blogData, setBlogData] = useState();
   const [loading, setLoading] = useState(true);
@@ -67,7 +67,7 @@ const SingleArticle = () => {
       {blogData && (
         <>
           <div className='mx-auto mt-14 w-[90%] lg:w-[60%]'>
-            <LazyLoad
+            {/* <LazyLoad
               classes={""}
               image={
                 blogData?.data?.imageUrl
@@ -75,13 +75,14 @@ const SingleArticle = () => {
                   : fallBackImage
               }
             // Set the width to 100%
-            />
+            
+            /> */}
 
 
           </div>
           <div className="flex justify-between mt-4">
 
-<a href="#comments">comment</a>
+
           </div>
           <div className='mx-4'>
             {/* <p className=' px-10 pt-10 text-white'>
@@ -172,4 +173,4 @@ const SingleArticle = () => {
   );
 };
 
-export default SingleArticle;
+export default OldSingleArticle;

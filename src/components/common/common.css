@@ -1,0 +1,72 @@
+/* common.css */
+
+/* Reset some default styles */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set a basic font style */
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+/* Style for the tag toolbar on larger screens */
+.tagtoolbar {
+    background-color: #f2f2f2;
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Style for category buttons on larger screens */
+.categoryBtn {
+    text-transform: uppercase;
+    margin-right: 8px; /* Adjust as needed */
+    color: #333;
+    text-decoration: none;
+}
+
+/* Style for vertical divider on larger screens */
+.MuiDivider-vertical {
+    background-color: #666;
+    height: auto;
+}
+
+/* Styles for the accordion on smaller screens */
+.accordion-container {
+    width: 100%;
+}
+
+.accordion-item {
+    border-bottom: 1px solid #ccc;
+}
+
+.categoryBtn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    text-align: left;
+    text-decoration: none;
+    color: #3487c6;
+    background-color: #f9f9f9;
+    border: none;
+    cursor: pointer;
+    
+}
+
+.categoryBtn:hover {
+    background-color: #ddd;
+}
+
+/* Additional styles for the collapsed view in mobile */
+@media (max-width: 600px) {
+    .accordion-item {
+        display: none;
+    }
+
+    .accordion-item.active {
+        display: block;
+    }
+}

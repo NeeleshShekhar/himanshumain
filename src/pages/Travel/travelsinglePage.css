@@ -1,0 +1,167 @@
+/* SingleArticle.css */
+
+
+  
+  .article-image {
+    
+    margin-top: 14px;
+  }
+  
+  .article-header {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4px;
+  }
+  
+  .article-tags {
+    /* Add your styles for tags */
+  }
+  
+  .article-title {
+    margin-top: 12px;
+    text-align: left;
+    color: black;
+    font-size: 35px;
+  }
+  
+  .author-details {
+    margin-top: 10px;
+    font-size: 50px;
+  }
+  
+  .author-avatar {
+    /* Add your styles for author avatar */
+  }
+  
+  .article-content {
+    
+  }
+  
+  .comments-section {
+    margin: auto;
+    margin-bottom: 10px;
+    margin-top: 3px;
+    width: 80%;
+    max-width: 100%;
+    padding: 0 20px;
+  }
+  
+  .fetched-comments {
+    max-height: 20rem;
+    overflow-y: scroll;
+    margin-top: 10px;
+  }
+  
+  .comment-box {
+    margin-top: 6px;
+    border-radius: 0.375rem;
+    background-color: #f6f9ff;
+    padding: 2px;
+  }
+  
+  .comment-details {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-top: 2px;
+  }
+  
+  .comment-avatar {
+    margin-right: 3px;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+  }
+  
+  .comment-text {
+    margin-left: 14px;
+    width: 80%;
+    padding-top: 2px;
+  }
+  
+  .share-options {
+    /* Add your styles for social media sharing options */
+  }
+  
+
+  .article-actions {
+    display: flex;
+    align-items: left;
+    justify-content: space-between;
+    margin-top: 16px; /* Adjust margin as needed */
+    gap: 8px; 
+  }
+  
+  .article-buttons {
+    display: flex;
+    gap: 8px; /* Adjust the gap between buttons as needed */
+  }
+
+  
+
+
+  .carousel-container {
+    /* position: fixed; */
+    top: 0;
+    left: 0;
+    width: 100%;
+    
+    /* Send the carousel to the background */
+}
+
+.carousel-caption {
+    text-align: center;
+    top: 30%;
+}
+
+.carousel-title {
+    font-size: 50px;
+    font-weight: 600;
+}
+
+.carousel-desc {
+    font-size: 20px;
+}
+
+.caraousel-main{
+    height: 70vh;
+}
+
+.caraousel-img{
+    height: 70vh;
+}
+
+/* Add any additional styles as needed */
+
+/* Media query for phones */
+@media only screen and (max-width: 767px) {
+    .carousel-container {
+        /* Add specific styles for phones */
+    }
+
+    .carousel-caption {
+        /* Add specific styles for phones */
+        
+    }
+
+    .carousel-title {
+        /* Add specific styles for phones */
+        font-size: 40px;
+        font-weight: 600; /* Example: reducing font size for phones */
+    }
+
+    .carousel-desc {
+        display: none;
+    }
+
+    .caraousel-main{
+        height: 100vh;
+    }
+
+    .caraousel-img{
+        height: 90vh;
+    }
+    
+
+    /* Add any additional styles for phones as needed */
+}

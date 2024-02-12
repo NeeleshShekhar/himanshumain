@@ -85,7 +85,9 @@ const Header = () => {
   const navLinks = [
     { label: "Home", to: "/" },
     { label: "Articles", to: "/articles" },
+    { label: "Travel", to: "/travel" },
     { label: "About Me", to: "/aboutme" },
+
     // authenticated && { label: "My Blogs", to: `/myblogs/${auth.currentUser.uid}` },
     !authenticated && { label: "Sign In", to: "/sign-in" },
   ].filter(Boolean);
@@ -108,67 +110,69 @@ const Header = () => {
   );
 
   return (
-    <div className="container">
-      <AppBar position="sticky" style={{ background: "white",color:"black" }} elevation={0}>
-        <Toolbar>
-          <a href="/"><img loading="lazy" src={Logo} alt="" width="200px"  /></a>
-          <Box sx={{ flexGrow: 1 }} />
-          <IconButton
-            onClick={() => setShowDrawer(true)}
-            edge="end"
-            color="inherit"
-            aria-label="menu"
-            sx={{ display: { md: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          {authenticated ? (
-            <>
-              {renderLinks()}
-              <IconButton
-                color="inherit"
-                onClick={handleMenuOpen}
-                sx={{ textDecoration: "none" }}
-              >
-                <AccountCircleIcon />
-              </IconButton>
-              <Menu
-                id="user-menu"
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={handleMenuClose}
-              >
-                <MenuItem onClick={handleAccountClick}>Dashboard</MenuItem>
-                <MenuItem onClick={handleLogout}>Logout</MenuItem>
-              </Menu>
-            </>
-          ) : (
-            renderLinks()
-          )}
-        </Toolbar>
-      </AppBar>
-      <Drawer anchor="right" open={showDrawer} onClose={() => setShowDrawer(false)}>
-        <List>
-          {navLinks.map((link) => (
-            <ListItem
-              key={link.to}
-              button
-              component={RouterLink}
-              to={link.to}
-              onClick={() => setShowDrawer(false)}
-              sx={{ textDecoration: "none" }}
-              className={location.pathname === link.to && "highlight"}
+    <div style={{background:"white"}}>
+      <div className="container">
+        <AppBar position="sticky" style={{ background: "white", color: "black" }} elevation={0}>
+          <Toolbar>
+            <a href="/"><img loading="lazy" src={Logo} alt="" width="200px" /></a>
+            <Box sx={{ flexGrow: 1 }} />
+            <IconButton
+              onClick={() => setShowDrawer(true)}
+              edge="end"
+              color="inherit"
+              aria-label="menu"
+              sx={{ display: { md: "none" } }}
             >
-              <ListItemText primary={link.label} />
-            </ListItem>
-          ))}
-          {authenticated && (
-            <ListItem button onClick={handleLogout}>
-              <ListItemText primary="Logout" />
-            </ListItem>
-          )}
-        </List>
-      </Drawer>
+              <MenuIcon />
+            </IconButton>
+            {authenticated ? (
+              <>
+                {renderLinks()}
+                <IconButton
+                  color="inherit"
+                  onClick={handleMenuOpen}
+                  sx={{ textDecoration: "none" }}
+                >
+                  <AccountCircleIcon />
+                </IconButton>
+                <Menu
+                  id="user-menu"
+                  anchorEl={anchorEl}
+                  open={Boolean(anchorEl)}
+                  onClose={handleMenuClose}
+                >
+                  <MenuItem onClick={handleAccountClick}>Dashboard</MenuItem>
+                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                </Menu>
+              </>
+            ) : (
+              renderLinks()
+            )}
+          </Toolbar>
+        </AppBar>
+        <Drawer anchor="right" open={showDrawer} onClose={() => setShowDrawer(false)}>
+          <List>
+            {navLinks.map((link) => (
+              <ListItem
+                key={link.to}
+                button
+                component={RouterLink}
+                to={link.to}
+                onClick={() => setShowDrawer(false)}
+                sx={{ textDecoration: "none" }}
+                className={location.pathname === link.to && "highlight"}
+              >
+                <ListItemText primary={link.label} />
+              </ListItem>
+            ))}
+            {authenticated && (
+              <ListItem button onClick={handleLogout}>
+                <ListItemText primary="Logout" />
+              </ListItem>
+            )}
+          </List>
+        </Drawer>
+      </div>
     </div>
   );
 };
