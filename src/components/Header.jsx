@@ -84,10 +84,11 @@ const Header = () => {
   };
 
   const navLinks = [
-    { label: "Home", to: "/" },
+    { label: "Home", to: "/home" },
     { label: "Articles", to: "/articles" },
     { label: "E-Media", to: "/electronicmedia" },
     { label: "PrintMedia", to: "/printmedia" },
+    { label: "Travel", to: "/travel" },
     { label: "About Me", to: "/aboutme" },
 
     // authenticated && { label: "My Blogs", to: `/myblogs/${auth.currentUser.uid}` },
@@ -116,7 +117,8 @@ const Header = () => {
       <div className="container">
         <AppBar position="sticky" style={{ background: "white", color: "black" }} elevation={0}>
           <Toolbar>
-            <a href="/home" style={{textDecoration:"none"}} ><img loading="lazy" src={Logo} alt="" width="200px" /></a>
+            <Link key="/home"
+          component={RouterLink} to="/home"><img loading="lazy" src={Logo} alt="" width="200px" /></Link>
             <Box sx={{ flexGrow: 1 }} />
             <IconButton
               onClick={() => setShowDrawer(true)}
