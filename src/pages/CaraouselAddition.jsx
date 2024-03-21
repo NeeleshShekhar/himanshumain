@@ -6,7 +6,7 @@ import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
 import { v4 as uuidv4 } from "uuid";
-import useImageUpload from "../hooks/useImageUpload";
+import useImageUpload from "../hooks/useBlogImageUpload";
 import {
   Table,
   TableBody,

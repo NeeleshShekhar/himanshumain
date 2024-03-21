@@ -32,12 +32,12 @@ const Dropdown = ({ toggleMenu, category, selectCategory, isOpen }) => {
           <div className='absolute z-10 mt-3 w-44 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700'>
             <ul className='py-2 text-sm text-gray-700 dark:text-gray-200'>
               <li
-                onClick={() => selectCategory("entertainment")}
+                onClick={() => selectCategory("Poems")}
                 id='category'
-                value='entertainment'
+                value='Poems'
                 className='block cursor-pointer px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
               >
-                <a>Entertainment</a>
+                <a>Poems</a>
               </li>
               <li
                 onClick={() => selectCategory("knowledge")}
@@ -49,12 +49,12 @@ const Dropdown = ({ toggleMenu, category, selectCategory, isOpen }) => {
               </li>
 
               <li
-                onClick={() => selectCategory("programming")}
+                onClick={() => selectCategory("Jharkhand")}
                 id='category'
-                value='programming'
+                value='Jharkhand'
                 className='block cursor-pointer px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
               >
-                <a>Programming</a>
+                <a>Jharkhand</a>
               </li>
 
               <li

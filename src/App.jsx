@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import Header from "./components/Header";
 import MainHome from "./pages/LandingPage/Main";
 import MyBlogs from "./pages/MyBlogs";
@@ -25,47 +26,61 @@ import ArticleMain from "./pages/Blogs/Main";
 import TravelMain from "./pages/Travel/TravelMain";
 import AddGalleryPost from "./pages/AddGalleryPost";
 import TravelSinglePage from "./pages/Travel/TravelSinglePage";
+import PrintMain from "./pages/PrintMedia/Main";
+import AddPrintMedia from "./pages/PrintMedia/AddPrintMedia";
+import ElectronicMain from "./pages/electronicMedia/Main";
+import AddElectronicMedia from "./pages/electronicMedia/AddElectronicMedia";
+import MultipleImageUpload from "./pages/AddPhotos";
 // import WriteTravelGallery from "./components/WriteTravelGallery/WriteTravelGallery";
 
 const App = () => {
-  /* 
-  TODO -  Add image input in write blog component, add the image to cloud storage in firebase
-  
-   */
-
+ 
   return (
     <div className="">
       <Router>
         <Header />
 
         <Routes>
-          <Route path='/' element={<MainHome />} />
+
+          <Route path='/' element={<SignIn />} />
+          <Route path='/sign-in' element={<SignIn />} />
+          <Route path='/sign-up' element={<Register />} />
+          <Route path='/forgot-password' element={<ForgotPassword />} />
           {/* Private Routes */}
           <Route element={<PrivateRoute />}>
+            <Route path='/home' element={<MainHome />} />
             <Route path='/myBlogs/:userId' element={<MyBlogs />} />
             <Route path='/write' element={<WriteBlog />} />
             <Route path='/WriteTravelGallery' element={<AddGalleryPost />} />
             <Route path="/dashboard" element={<Dashboard />} />
+
+            <Route path='/articles' element={<ArticleMain />} />
+
+            <Route path={`/category/:categoryName`} element={<Category />} />
+            <Route
+              path={`/category/:categoryName/:articleId`}
+              element={<SingleArticle />}
+            />
+            <Route path={`/edit/:articleId`} element={<EditArticle />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/aboutme" element={<AboutMe />} />
+
+            <Route path='/sign-out' element={<Logout />} />
+            <Route path="/account" element={<AccountPage />} />
+
+            <Route path="/caraouseladdition" element={<CarouselInformation />} />
+            <Route path="/newblogs" element={<ArticleMain />} />
+            <Route path="/travel" element={<TravelMain />} />
+            <Route path="/travel/:travelId" element={<TravelSinglePage />} />
+            <Route path="/printMedia" element={<PrintMain />} />
+            <Route path="/addprintMedia" element={<AddPrintMedia />} />
+            <Route path="/electronicMedia" element={<ElectronicMain />} />
+            <Route path="/addelectronicMedia" element={<AddElectronicMedia />} />
+            <Route path="/addphotos" element={<MultipleImageUpload />} />
+            
           </Route>
-          <Route path='/articles' element={<ArticleMain />} />
-          <Route path='/sign-in' element={<SignIn />} />
-          <Route path={`/category/:categoryName`} element={<Category />} />
-          <Route
-            path={`/category/:categoryName/:articleId`}
-            element={<SingleArticle />}
-          />
-          <Route path={`/edit/:articleId`} element={<EditArticle />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/aboutme" element={<AboutMe />} />
-          <Route path='/sign-up' element={<Register />} />
-          <Route path='/forgot-password' element={<ForgotPassword />} />
-          <Route path='/sign-out' element={<Logout />} />
-          <Route path="/account" element={<AccountPage />} />
-          
-          <Route path="/caraouseladdition" element={<CarouselInformation />} />
-          <Route path="/newblogs" element={<ArticleMain />} />
-          <Route path="/travel" element={<TravelMain />} />
-          <Route path="/travel/:travelId" element={<TravelSinglePage />} />
+
+
         </Routes>
       </Router>
       {/* <Footer/> */}

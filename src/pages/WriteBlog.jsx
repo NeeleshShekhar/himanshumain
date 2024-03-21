@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 import BlogEditor from "../components/BlogEditor";
 import { Balancer } from "react-wrap-balancer";
 import Dropdown from "../components/Dropdown";
-import useImageUpload from "../hooks/useImageUpload";
+import useImageUpload from "../hooks/useBlogImageUpload";
 
 const WriteBlog = () => {
   const auth = getAuth();
@@ -73,7 +73,7 @@ const WriteBlog = () => {
           blogData,
           imageUrl,
           comments: [],
-          isPublished: "false",
+          isPublished: "true",
         });
         navigate(`/myBlogs/${auth.currentUser.uid}`);
         setLoading(false);
@@ -101,7 +101,7 @@ const WriteBlog = () => {
   return (
     <div className='h-full bg-gray-200 pb-20'>
       <h1 className='bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text py-4 pt-14 text-center font-raleway text-4xl font-extrabold text-transparent md:text-5xl'>
-        <Balancer>Create a new blog post</Balancer>
+        <Balancer>Create a new Writing post</Balancer>
       </h1>
       <form
         onSubmit={onSubmitHandler}

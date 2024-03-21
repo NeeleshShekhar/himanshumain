@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { getAuth } from "firebase/auth";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-// import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage"
 import { db } from "../config/firebase";
 import { toast } from "react-hot-toast";
 import { TextField, Button, InputLabel, FormControl, Grid, IconButton, Paper } from '@mui/material';
@@ -11,7 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 import BlogEditor from "../components/BlogEditor";
 import { Balancer } from "react-wrap-balancer";
 import Dropdown from "../components/Dropdown";
-import useImageUpload from "../hooks/useImageUpload";
+import useImageUpload from "../hooks/usePhotoImageUpload";
 import AddIcon from '@mui/icons-material/Add';
 
 const AddGalleryPost = () => {
@@ -22,15 +21,14 @@ const AddGalleryPost = () => {
   const [blogData, setBlogData] = useState({
     title: "",
     content: "",
-    image: "",
+    // Remove image field from blogData
   });
-  const { image, title } = blogData;
-  const { storeImage } = useImageUpload(image);
+  const { title } = blogData;
+  const { storeImage } = useImageUpload(); // No need to pass image here
   const [textInputs, setTextInputs] = useState(['']);
   const [state, setState] = useState('');
   const [country, setCountry] = useState('');
-  // To get category
-
+  const [images, setImages] = useState([]); // State to store selected images
 
   // Add details to blogData state
   const onChangeHandler = (e) => {
@@ -40,53 +38,44 @@ const AddGalleryPost = () => {
         title: e.target.value,
       });
     }
-    console.log(blogData);
+    // Store all selected files in an array
     if (e.target.files) {
-      setBlogData({
-        ...blogData,
-        image: e.target.files[0],
-      });
+      const selectedFiles = Array.from(e.target.files);
+      setImages(selectedFiles);
     }
-    // console.log(blogData);
   };
 
   // Submit details to firebase
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     setLoading(true);
-    if (blogData.content && blogData.title) {
-      try {
-        const imageUrl = await storeImage(blogData.image);
-        delete blogData.image;
-        const blogRef = collection(db, "posts");
-        await addDoc(blogRef, {
-          uuid: uuidv4(),
-          timestamp: serverTimestamp(),
-          author: {
-            name: auth.currentUser.displayName,
-            id: auth.currentUser.uid,
-          },
-          blogData,
-          state,
-          country,
-          imageUrl,
-          comments: [],
-          isPublished: "false",
-          textInputs,
-        });
-        navigate(`/travel/`);
-        setLoading(false);
-        toast.success("Gallery published");
-      } catch (error) {
-        setLoading(false);
-        console.error(error);
-        toast.error("Unable to publish Gallery Post");
-      } finally {
-        setLoading(false);
-      }
-    } else {
-      toast.error("Please fill all the fields");
+
+    try {
+      // Upload all selected images and get their URLs
+      const imageUrls = await Promise.all(images.map(image => storeImage(image)));
+      const blogRef = collection(db, "gallery");
+      await addDoc(blogRef, {
+        uuid: uuidv4(),
+        timestamp: serverTimestamp(),
+        author: {
+          name: auth.currentUser.displayName,
+          id: auth.currentUser.uid,
+        },
+        blogData,
+        state,
+        country,
+        imageUrls, // Store array of image URLs
+        comments: [],
+        isPublished: "false",
+        textInputs,
+      });
+      navigate(`/travel/`);
       setLoading(false);
+      toast.success("Gallery published");
+    } catch (error) {
+      setLoading(false);
+      console.error(error);
+      toast.error("Unable to publish Gallery Post");
     }
   };
 
@@ -107,6 +96,7 @@ const AddGalleryPost = () => {
   const handleAddTextInput = () => {
     setTextInputs([...textInputs, '']);
   };
+
   return (
     <div className='h-full '>
       <h1 className='bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text py-4 pt-14 text-center font-raleway text-4xl font-extrabold text-transparent md:text-5xl'>
@@ -126,41 +116,17 @@ const AddGalleryPost = () => {
           id='title'
           placeholder='Enter title here...'
         />
+        {/* Allow multiple file selection */}
         <input
           onChange={onChangeHandler}
           type='file'
           maxLength={1}
+          multiple
           accept='.jpg,.png,.jpeg'
           className='mt-5 w-full rounded-md border border-zinc-800 py-3 pl-3 text-zinc-700'
         />
 
-        <Grid item xs={12}>
-          <FormControl fullWidth>
-            <div>State:</div>
-            <TextField type="text" value={state} onChange={(e) => setState(e.target.value)} fullWidth />
-          </FormControl>
-        </Grid>
-
-        <Grid item xs={12}>
-          <FormControl fullWidth>
-            <div>Country:</div>
-            <TextField type="text" value={country} onChange={(e) => setCountry(e.target.value)} fullWidth />
-          </FormControl>
-        </Grid>
-        {textInputs.map((text, index) => (
-          <Grid item xs={12} key={index}>
-            <FormControl fullWidth>
-              <div>{`Text Input ${index + 1}:`}</div>
-              <TextField type="text" value={text} onChange={(e) => handleTextInputChange(index, e.target.value)} fullWidth />
-            </FormControl>
-          </Grid>
-        ))}
-        <Grid item xs={12}>
-          <IconButton onClick={handleAddTextInput}>
-            <AddIcon />
-          </IconButton>
-        </Grid>
-        <BlogEditor blogData={blogData} setBlogData={setBlogData} />
+        
         <div className='mx-auto my-8 w-full max-w-[50%] lg:max-w-[40%] '>
           <button
             type='submit'

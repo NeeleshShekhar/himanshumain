@@ -5,7 +5,7 @@ import {
   Typography, CircularProgress, Table, TableContainer, TableHead, TableBody, TableRow, TableCell, Paper,
   Card,
   CardContent,
-
+  Grid
 } from "@mui/material";
 import { Container, Row, Col } from "react-bootstrap";
 import { Button } from '@mui/material';
@@ -34,16 +34,7 @@ const AccountInfoTable = ({ email, name, numberOfBlogs, superUser }) => {
             <TableCell>Number of Blogs</TableCell>
             <TableCell>{numberOfBlogs}</TableCell>
           </TableRow>
-          <TableRow rowSpan={2} >
-            <TableCell>{superUser && <Button component={Link} to="/write" variant="contained" color="primary">
-              Go to Write
-            </Button>}</TableCell>
 
-            <TableCell>{superUser && <Button component={Link} to="/WriteTravelGallery" variant="contained" color="primary">
-              Go to Write Travel
-            </Button>}</TableCell>
-
-          </TableRow>
         </TableBody>
       </Table>
     </TableContainer>
@@ -140,23 +131,109 @@ const AccountPage = () => {
     <div className="">
       <Container className="mt-5">
         <Row>
-          <Col xs={12} md={8}>
+          <Col xs={12} md={12}>
             {loading && <CircularProgress />}
             {error && <Typography color="error">Error: {error}</Typography>}
             {userData && (
               <div>
-                <AccountInfoTable email={userData.email} name={userData.name} numberOfBlogs={blogs.length} superUser={userData.superUser} />
+                <AccountInfoTable email={userData.email} name={userData.firstName + " " + userData.lastName} numberOfBlogs={blogs.length} superUser={userData.superUser} />
 
               </div>
             )}
+            <br /><br />
           </Col>
-          <Col xs={12} md={4} className="">
-          {/* {blogs.length > 0 && <BlogTable blogs={blogs} />} */}
+
+          <Col xs={12} md={12}>
+            {userData?.superUser && (
+              <Grid container spacing={2} justifyContent="center">
+                {/* Write Blog */}
+                <Grid item xs={6} md={2}>
+                  <Card style={{ maxWidth: 200 }}>
+                    <CardContent>
+                      <Button
+                        component={Link}
+                        to="/write"
+                        variant="contained"
+                        color="primary"
+                        fullWidth
+                      >
+                        Write Blog
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </Grid>
+                {/* Add Print Media */}
+                <Grid item xs={6} md={2}>
+                  <Card style={{ maxWidth: 200 }}>
+                    <CardContent>
+                      <Button
+                        component={Link}
+                        to="/addprintMedia"
+                        variant="contained"
+                        color="primary"
+                        fullWidth
+                      >
+                        Add Print Media
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </Grid>
+                {/* Add Electronic Media */}
+                <Grid item xs={6} md={2}>
+                  <Card style={{ maxWidth: 200 }}>
+                    <CardContent>
+                      <Button
+                        component={Link}
+                        to="/addelectronicmedia"
+                        variant="contained"
+                        color="primary"
+                        fullWidth
+                      >
+                        Add E Media
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </Grid>
+                {/* Add Gallery */}
+                <Grid item xs={6} md={2}>
+                  <Card style={{ maxWidth: 200 }}>
+                    <CardContent>
+                      <Button
+                        component={Link}
+                        to="/writetravelgallery "
+                        variant="contained"
+                        color="primary"
+                        fullWidth
+                      >
+                        Add Gallery
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </Grid>
+                {/* Add Video */}
+                <Grid item xs={6} md={2}>
+                  <Card style={{ maxWidth: 200 }}>
+                    <CardContent>
+                      <Button
+                        component={Link}
+                        to="/add-video"
+                        variant="contained"
+                        color="primary"
+                        fullWidth
+                      >
+                        Add Video
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              </Grid>
+            )}
           </Col>
+
         </Row>
       </Container>
 
-      {userData?.superUser && <MyBlogs />}
+      {/* {userData?.superUser && <MyBlogs />} */}
 
     </div>
   );

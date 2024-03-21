@@ -17,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import Loader from "../../components/Loader";
 import OAuth from "../../components/OAuth";
-import image from "../../Asset/CaraouselPicturesStatic/3.jpg"
+import image from "../../Asset/CaraouselImage/3.jpg"
 // Import the custom CSS file
 import "./SignIn.css";
 
@@ -45,7 +45,7 @@ function SignIn() {
       const auth = getAuth();
       const userCredentials = await signInWithEmailAndPassword(auth, email, password);
       if (userCredentials?.user) {
-        navigate("/");
+        navigate("/home");
         toast.success("Welcome Back, have a great day");
       }
     } catch (error) {

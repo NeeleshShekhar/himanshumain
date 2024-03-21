@@ -13,9 +13,9 @@ import "./common.css"; // Import the CSS file
 
 const Tags = () => {
   const categories = [
-    { title: "Entertainment", url: "/category/entertainment" },
-    { title: "Knowledge", url: "/category/knowledge" },
-    { title: "Programming", url: "/category/programming" },
+    { title: "Poems", url: "/category/entertainment" },
+    { title: "Politics", url: "/category/knowledge" },
+    { title: "Jharkhand", url: "/category/Jharkhand" },
     { title: "Productivity", url: "/category/productivity" },
     { title: "Lifestyle", url: "/category/lifestyle" },
     { title: "Design", url: "/category/design" },

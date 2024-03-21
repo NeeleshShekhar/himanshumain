@@ -11,9 +11,11 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
-
+import { db,auth } from "../../config/firebase";
 import imageregister from "../../Asset/CaraouselPicturesStatic/3.jpg";
 import OAuth from "../../components/OAuth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 
 const defaultTheme = createTheme();
 
@@ -50,9 +52,23 @@ const Register = () => {
     // Your existing logic for storing image and registering user goes here...
 
     try {
-      // Existing logic for creating user and storing image...
+      // Create user with email and password
+      const userCredentials = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredentials.user;
+
+      // Store additional user data in Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        timestamp: serverTimestamp(),
+        user_uid: user.uid,
+        superUser: false,
+        // Add other fields as needed
+      });
 
       toast.success("User registered successfully, Welcome!!");
+      navigate("/"); // Redirect to home page after successful registration
     } catch (error) {
       console.log(error);
       toast.error(error.message);

@@ -16,8 +16,9 @@ import { toast } from "react-hot-toast";
 import Loader from "../../components/Loader";
 import Tags from "../../components/common/Tags";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Container, Grid, CardActionArea, Card, CardContent, Typography, CardMedia, Divider } from "@mui/material";
+import { Container, Grid, CardActionArea, Card, CardContent, Typography, CardMedia, Divider, IconButton, Avatar } from "@mui/material";
 import CardSkeleton from "../../components/skeleton/CardSkeleton";
+import red from "@mui/material/colors/red";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 import parse from "html-react-parser";
@@ -126,28 +127,42 @@ const CategoryBlogs = ({ category }) => {
 
                                     <CardActionArea component="a" >
                                         <div >
-                                            <Card sx={{ display: 'flex' }} onClick={() => navigate(`/category/${blog.data.blogData.category}/${blog.id}`)}>
-                                                <CardMedia
-                                                    component="img"
-                                                    sx={{ width: 80, display: { xs: '', sm: 'block' } }}
-                                                    image={blog.data.imageUrl}
-                                                    alt={blog.data.imageUrl}
-                                                />
+                                            <Card sx={{ display: 'flex' }} onClick={() => navigate(`/category/${blog.data.blogData.category}/${blog.id}`)} elevation={0}>
+
                                                 <CardContent sx={{ flex: 1 }}>
-                                                    <Typography style={{ fontSize: "15px", fontWeight: "600" }}>
-                                                        {blog.data.blogData?.title} {/* Assuming 'title' is the field in your blog data */}
+                                                    <Typography  >
+                                                        <IconButton disableRipple >
+                                                            <Avatar sx={{ bgcolor: red[500], width: 15, height: 15 }} aria-label="recipe">
+                                                                <div style={{ fontSize: "8px" }}>{parse(blog.data.author?.name.substring(0, 1))}</div>
+                                                            </Avatar>
+                                                            <div style={{ fontSize: "12px", marginLeft: "5px" }}>{blog.data.author?.name} in <span style={{ fontWeight: "700", }}>{blog.data.blogData.category}</span> </div>
+                                                        </IconButton>
+
+                                                    </Typography>
+                                                    <Typography style={{ fontFamily: "PopinsExtraBold", fontSize: "0.9rem" }}>
+                                                        {blog.data.blogData.title}
+                                                    </Typography>
+                                                    <Typography style={{ fontFamily: "PopinsMedium", fontSize: "0.7rem" }}>
+
+                                                        {Math.ceil(blog.data.blogData.content.length / 190)} minutes read
                                                     </Typography>
                                                     {/* <Typography style={{fontSize:"10px",fontWeight:"600"}}>
-                            {formattedDate}
-                        </Typography> */}
+{formattedDate}
+</Typography> */}
                                                     {/* <Typography style={{fontSize:"10px",fontWeight:"300"}}>
-                            {parse(blog.data.blogData.content.substring(0, 50))}
-                        </Typography>
-                        <Typography variant="subtitle1" color="primary">
-                            Continue reading...
-                        </Typography> */}
+{parse(blog.data.blogData.content.substring(0, 50))}
+</Typography>
+<Typography variant="subtitle1" color="primary">
+Continue reading...
+</Typography> */}
                                                 </CardContent>
-
+                                                <CardMedia
+                                                    component="img"
+                                                    sx={{ width: 120, display: { xs: '', sm: 'block' } }}
+                                                    image={blog.data.imageUrl}
+                                                    alt={blog.data.imageUrl}
+                                                    style={{ padding: "10px" }}
+                                                />
                                             </Card>
                                         </div>
                                     </CardActionArea>
@@ -181,26 +196,38 @@ const CategoryBlogs = ({ category }) => {
                             <Grid item key={blog.id} xs={12} >
                                 <CardActionArea component="a" >
                                     <div >
-                                        <Card sx={{ display: 'flex' }} onClick={() => navigate(`/category/${blog.blogsData.category}/${blog.id}`)}>
-                                            <CardMedia
-                                                component="img"
-                                                sx={{ width: 160, display: { xs: '', sm: 'block' } }}
-                                                image={blog.data.imageUrl}
-                                                alt={blog.data.imageUrl}
-                                            />
+                                        <Card sx={{ display: 'flex' }} onClick={() => navigate(`/category/${blog.blogsData.category}/${blog.id}`)} elevation={0}>
+
                                             <CardContent sx={{ flex: 1 }}>
-                                                <Typography component="h2" variant="h5">
-                                                    {blog.data.blogData?.title} {/* Assuming 'title' is the field in your blog data */}
+                                                <Typography  >
+                                                    <IconButton disableRipple >
+                                                        <Avatar sx={{ bgcolor: red[500], width: 25, height: 25 }} aria-label="recipe">
+                                                            <div >{parse(blog.data.author?.name.substring(0, 1))}</div>
+                                                        </Avatar>
+                                                        <div style={{ fontSize: "15px", marginLeft: "5px" }}>{blog.data.author?.name} in <span style={{ fontWeight: "700", }}>{blog.data.blogData.category}</span> | {formattedDate} </div>
+                                                    </IconButton>
+
                                                 </Typography>
-                                                
+                                                <Typography component="h2" variant="h5" style={{ fontFamily: "PopinsExtraBold", fontSize: "1.5rem" }}>
+                                                    {blog.data.blogData.title}
+                                                </Typography>
+                                                <Typography variant="subtitle1" color="text.secondary">
+                                                    {blog.data.date} {/* Assuming 'date' is the field in your blog data */}
+                                                </Typography>
                                                 <Typography variant="subtitle1" paragraph>
-                                                    {parse(blog.data.blogData?.content.substring(0, 200))}
+                                                    {parse(blog.data.blogData.content.substring(0, 200))}
                                                 </Typography>
                                                 <Typography variant="subtitle1" color="primary">
                                                     Continue reading...
                                                 </Typography>
                                             </CardContent>
-
+                                            <CardMedia
+                                                component="img"
+                                                sx={{ width: 160, display: { xs: '', sm: 'block' } }}
+                                                image={blog.data.imageUrl}
+                                                alt={blog.data.imageUrl}
+                                                style={{ padding: "20px" }}
+                                            />
                                         </Card>
                                     </div>
                                 </CardActionArea>

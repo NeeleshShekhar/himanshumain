@@ -12,13 +12,14 @@ import {
   ListItemText,
   Menu,
   MenuItem,
+  Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { toast } from "react-hot-toast";
 import Swal from "sweetalert2";
-import Logo from "../assets/Neele.png";
+import Logo from "../Asset/logo.png";
 
 
 const Header = () => {
@@ -85,7 +86,8 @@ const Header = () => {
   const navLinks = [
     { label: "Home", to: "/" },
     { label: "Articles", to: "/articles" },
-    { label: "Travel", to: "/travel" },
+    { label: "E-Media", to: "/electronicmedia" },
+    { label: "PrintMedia", to: "/printmedia" },
     { label: "About Me", to: "/aboutme" },
 
     // authenticated && { label: "My Blogs", to: `/myblogs/${auth.currentUser.uid}` },
@@ -114,7 +116,7 @@ const Header = () => {
       <div className="container">
         <AppBar position="sticky" style={{ background: "white", color: "black" }} elevation={0}>
           <Toolbar>
-            <a href="/"><img loading="lazy" src={Logo} alt="" width="200px" /></a>
+            <a href="/home" style={{textDecoration:"none"}} ><img loading="lazy" src={Logo} alt="" width="200px" /></a>
             <Box sx={{ flexGrow: 1 }} />
             <IconButton
               onClick={() => setShowDrawer(true)}

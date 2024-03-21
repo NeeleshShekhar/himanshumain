@@ -11,7 +11,7 @@ const SocialMediaComponent = () => {
           {/* Twitter Embed */}
           <a
             className="twitter-timeline"
-            href="https://twitter.com/adityashuklaIIS"
+            href="https://twitter.com/"
             data-chrome="noheader nofooter noborders transparent"
             data-theme="light"
           >
@@ -23,7 +23,7 @@ const SocialMediaComponent = () => {
           {/* Twitter Embed */}
           <a
             className="twitter-timeline"
-            href="https://twitter.com/adityashuklaIIS"
+            href="https://twitter.com/"
             data-chrome="noheader nofooter noborders transparent"
             data-theme="light"
           >

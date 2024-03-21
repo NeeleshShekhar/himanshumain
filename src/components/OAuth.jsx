@@ -10,7 +10,7 @@ const OAuth = () => {
   const navigate = useNavigate();
 
   const signInWithGoogle = async () => {
-    try {
+    try { 
       const auth = getAuth();
       const provider = new GoogleAuthProvider();
       const userCredentials = await signInWithPopup(auth, provider);
@@ -43,7 +43,8 @@ const OAuth = () => {
         color="primary"
         size="large"
         fullWidth
-        sx={{ backgroundColor: "#0095a9" }} // You can customize the background color here
+        sx={{ backgroundColor: "#0095a9" }}
+        disabled={true} // You can customize the background color here
       >
         <FcGoogle size={22} style={{ marginRight: 8 }} />
         Sign in with Google
